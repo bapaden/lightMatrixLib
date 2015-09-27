@@ -1,6 +1,7 @@
 #include <cstdio>
 #include <vector>
 #include <cmath>
+#include <cassert>
 
 class matrix
 {
@@ -121,9 +122,7 @@ void matrix::resize(int& newRowSize, int& newColSize)
   {
    mat.at(i)=genericCol;
   };
-};
-
-
+}
 
 /*****  Matrix functions not part of class matrix *****/
 
@@ -144,7 +143,7 @@ matrix transpose(matrix& A)
     };
   };
   return B;
-};
+}
 
 //Add A and B
 matrix add(matrix& A, matrix& B)
@@ -164,7 +163,7 @@ matrix add(matrix& A, matrix& B)
   };
   
   return C;
-};
+}
 
 //Subtract A and B
 matrix subtract(matrix& A, matrix& B)
@@ -184,7 +183,7 @@ matrix subtract(matrix& A, matrix& B)
   };
   
   return C;
-};
+}
 
 //Get the ith column of A
 matrix column(matrix& A, const int& colIndex)
@@ -199,7 +198,7 @@ matrix column(matrix& A, const int& colIndex)
   };
   return col;
   
-};
+}
 
 //Get the jth row of A
 matrix row(matrix& A, const int& rowIndex)
@@ -214,7 +213,7 @@ matrix row(matrix& A, const int& rowIndex)
   };
   
   return col;
-};
+}
 
 //Get the inner product of two matrices as a vector
 double frobProd(matrix& A,matrix& B)
@@ -235,7 +234,7 @@ double frobProd(matrix& A,matrix& B)
 	
 	
 	return innerProduct;
-};
+}
 
 //Multiply A and B
 
@@ -267,7 +266,66 @@ matrix multiply(matrix& A, matrix& B)
   };
   
   return C;
-};
+}
+
+/*** Vector Operations ***/
+
+std::vector<double> operator+(const std::vector<double>& x, const std::vector<double>& y)
+{
+    assert(x.size()==y.size());
+    std::vector<double> z(x.size());
+    for(int i=0;i<x.size();i++)
+    {
+        z.at(i)=x.at(i)+y.at(i);
+    }
+    
+    return z;
+}
+
+std::vector<double> operator-(const std::vector<double>& x, const std::vector<double>& y)
+{
+    assert(x.size()==y.size());
+    std::vector<double> z(x.size());
+    for(int i=0;i<x.size();i++)
+    {
+        z.at(i)=x.at(i)-y.at(i);
+    }
+    
+    return z;
+}
+
+std::vector<double> operator*(const double& c, const std::vector<double>& x)
+{
+    std::vector<double> z(x.size());
+    for(int i=0;i<x.size();i++)
+    {
+        z.at(i)=c*x.at(i);
+    }
+    
+    return z;
+}
+
+void disp(std::vector<double>& x)
+{
+    printf("vector:\n");
+    for(int i=0;i<x.size();i++)
+    {
+        printf("%f\n",x.at(i));
+    }
+}
+
+/*** Vector-Matrix operations ***/
+
+matrix vec2mat(const std::vector<double> x)
+{
+    matrix y(x.size(),1);
+    for(int i=0;i<x.size();i++)
+    {
+        y.assign(i,1,x.at(i));
+    }
+    
+    return y;
+}
 
 
 

@@ -35,5 +35,17 @@ int main()
   printf("\n C is:");
   C.disp();
   
+  
+  std::vector<double> x,y;
+  x.resize(3,1.0);
+  y.resize(3,1.0);
+  
+  disp(x);
+  std::vector<double> z = x+y;
+  disp(z);
+  double c=2.5;
+  z=c*z;
+  disp(z);
+  
   return 0;
 }
