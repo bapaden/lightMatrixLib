@@ -5,35 +5,41 @@ int main()
 {
   matrix A(2,2);
   
-  A.assign(0,0,1);
-  A.assign(0,1,0);
-  A.assign(1,0,0);
-  A.assign(1,1,1);
+  A.assign(0,0,1.0);
+  A.assign(0,1,0.0);
+  A.assign(1,0,0.0);
+  A.assign(1,1,1.0);
   
-  A.disp();
+  matrix B(2,2);
+  
+  B.assign(0,0,1.0);
+  B.assign(0,1,1.0);
+  B.assign(1,0,1.0);
+  B.assign(1,1,1.0);
+  
+  printf("A:");
+  disp(A);
+  
+  printf("B:");
+  disp(B);
   
   int i,j;
   A.size(i,j);
-  //printf("Dimension of A: (%d,%d)",i,j);
   
-  matrix B(i,j);
-  B=A;
   double AdotB = frobProd(A,B);
-  printf("AdotB: %f\n",AdotB);
+  printf("<A,B>: %f\n",AdotB);
   matrix C(i,j);
   printf("A+B\n");
-  C=add(A,B);
-  C.disp();
+  C=A+B;
+  disp(C);
   
-  C=subtract(A,B);
-  C.disp();
+  printf("A-B\n");
+  C=A-B;
+  disp(C);
   
-  printf("\nA is: ");
-  A.disp();
-  A.disp();
-  C=multiply(A,A);
-  printf("\n C is:");
-  C.disp();
+  C=A*B;
+  printf("\n A*B is:");
+  disp(C);
   
   
   std::vector<double> x,y;
