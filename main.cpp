@@ -6,22 +6,34 @@ int main()
   matrix A(2,2);
   
   A.assign(0,0,1.0);
-  A.assign(0,1,0.0);
-  A.assign(1,0,0.0);
-  A.assign(1,1,1.0);
+  A.assign(0,1,2.0);
+  A.assign(1,0,3.0);
+  A.assign(1,1,4.0);
   
   matrix B(2,2);
   
-  B.assign(0,0,1.0);
-  B.assign(0,1,1.0);
-  B.assign(1,0,1.0);
-  B.assign(1,1,1.0);
+  B=identity(2);
   
   printf("A:");
   disp(A);
   
   printf("B:");
   disp(B);
+  
+  std::vector<double> s(2);
+  s.at(0)=1;
+  s.at(1)=1;
+  
+  int n = 5;
+  
+  
+  
+  B=exp(B);
+  disp(B);
+  printf("maxRS %f\n",spectralRadius(B));
+  
+  std::vector<double> w=A*s;
+  disp(w);
   
   int i,j;
   A.size(i,j);
@@ -42,16 +54,6 @@ int main()
   disp(C);
   
   
-  std::vector<double> x,y;
-  x.resize(3,1.0);
-  y.resize(3,1.0);
-  
-  disp(x);
-  std::vector<double> z = x+y;
-  disp(z);
-  double c=2.5;
-  z=c*z;
-  disp(z);
   
   return 0;
 }
